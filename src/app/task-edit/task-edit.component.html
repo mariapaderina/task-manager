@@ -1,0 +1,27 @@
+<div class="row mt-5">
+  <div class="col-md-6 mx-auto">
+    <h2 class="text-center">Update Task</h2>
+    <div class="card mt-3">
+      <div class="card-body">
+        <form [formGroup]="taskForm" (ngSubmit)="updateTask(taskForm.value)">
+          <div class="form-group">
+            <label class="col-md-4">Title </label>
+            <input type="text" class="form-control" formControlName="title"/>
+            <label class="col-md-4">Description </label>
+            <input type="text" class="form-control" formControlName="description"/>
+            <label class="col-md-4">Priority</label>
+            <input type="text" class="form-control" formControlName="priority"/>
+            <label class="col-md-4">DateCreated</label>
+            <input type="text" class="form-control" formControlName="created"/>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary col-md-4" [disabled]="taskForm.invalid">Update</button>
+            <a [routerLink]="['/']">
+              <button type="submit" class="btn btn-primary col-md-4 ml-1">Back</button>
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

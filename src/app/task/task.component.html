@@ -1,0 +1,54 @@
+
+<div class="container mt-5">
+  <h2>Task-Manager</h2>
+  <div class="container-fluid mt-md-5">
+    <div class="row">
+      <div class="col">
+        <div class="btn-group btn-group-toggle float-left" data-toggle="buttons" onclick="applyFilters()">
+          <label class="btn btn-secondary active">
+            <input type="radio" name="options" id="option1" autocomplete="off" checked> Normal
+          </label>
+          <label class="btn btn-secondary">
+            <input type="radio" name="options" id="option2" autocomplete="off"> High
+          </label>
+          <label class="btn btn-secondary">
+            <input type="radio" name="options" id="option3" autocomplete="off"> Urgent
+          </label>
+        </div>
+      </div>
+      <div class="col">
+        <a class="float-right" [routerLink]="['/task/add']">
+          <button type="button" class="btn btn-primary">Add</button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <table class="table table-dark table-responsive-md table-striped table-bordered table-sm mt-3">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Priority</th>
+      <th>DateCreated</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let task of tasks">
+      <td>{{task.id}}</td>
+      <td>{{task.title}}</td>
+      <td>{{task.description}}</td>
+      <td>{{task.priority}}</td>
+      <td>{{task.created}}</td>
+      <td>
+        <button type="button" class="btn btn-outline-danger  mr-2" (click)="deleteTask(task.id)">Delete</button>
+        <a [routerLink]="['/task/edit/', task.id]">
+          <button type="button" class="btn btn-outline-primary">Edit</button>
+        </a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
