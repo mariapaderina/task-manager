@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Task-Manager": {
+    "task-manager": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/Task-Manager",
+            "outputPath": "dist/task-manager",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -28,8 +28,8 @@
               "./node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [
-              "./node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "./node_modules/jquery/dist/jquery.min.js"
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },
           "configurations": {
@@ -66,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Task-Manager:build"
+            "browserTarget": "task-manager:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "Task-Manager:build:production"
+              "browserTarget": "task-manager:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Task-Manager:build"
+            "browserTarget": "task-manager:build"
           }
         },
         "test": {
@@ -114,18 +114,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "Task-Manager:serve"
+            "devServerTarget": "task-manager:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "Task-Manager:serve:production"
+              "devServerTarget": "task-manager:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "Task-Manager",
+  "defaultProject": "task-manager",
   "cli": {
     "analytics": "f10ba05f-378c-4280-9bab-a588165604e3"
   }

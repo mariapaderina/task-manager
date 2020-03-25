@@ -12,7 +12,6 @@ import {toNumbers} from '@angular/compiler-cli/src/diagnostics/typescript_versio
   styleUrls: ['./task-edit.component.css']
 })
 export class TaskEditComponent implements OnInit {
-
   taskForm: FormGroup;
 
   constructor(
@@ -28,21 +27,22 @@ export class TaskEditComponent implements OnInit {
       title: ['', Validators.compose([Validators.required])],
       description: ['', Validators.compose([Validators.required])],
       priority: ['', Validators.compose([Validators.required])],
-      created: ['', Validators.compose([Validators.required])]
+      created: ['', Validators.compose([Validators.required])],
+      deadlineDate: [''],
+      completedDate: ['']
     });
 
-    this.getDetail(this.activeRouter.snapshot.params.id);
-  }
+    const idToFind = this.activeRouter.snapshot.params.id;
 
-  getDetail(id: number) {
-    const task = this.taskDataService.getTasksById(id);
-    console.log(`Found task with id: ${id} --- ${task}`);
+    const task = this.taskDataService.getTasksById(idToFind);
 
     this.taskForm.setValue({
       title: task.title,
       description: task.description,
       priority: task.priority,
-      created: task.created
+      created: task.created,
+      deadlineDate: task.deadlineDate,
+      completedDate: task.completedDate
     });
   }
 
@@ -55,6 +55,8 @@ export class TaskEditComponent implements OnInit {
     updatedTask.description = editFormValues.description;
     updatedTask.priority = editFormValues.priority;
     updatedTask.created = editFormValues.created;
+    updatedTask.deadlineDate = editFormValues.deadlineDate;
+    updatedTask.completedDate = editFormValues.completedDate;
 
     this.taskDataService.updateTask(updatedTask);
   }

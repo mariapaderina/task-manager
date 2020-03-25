@@ -1,20 +1,24 @@
 
 <div class="container mt-5">
   <h2>Task-Manager</h2>
-  <div class="container-fluid mt-md-5">
+  <div class="container-fluid p-0">
     <div class="row">
       <div class="col">
-        <div class="btn-group btn-group-toggle float-left" data-toggle="buttons" onclick="applyFilters()">
-          <label class="btn btn-secondary active">
-            <input type="radio" name="options" id="option1" autocomplete="off" checked> Normal
+        <div class="btn-group btn-group-toggle float-left" data-toggle="buttons">
+          <label class="btn btn-outline-secondary active">
+            <input [routerLink]="['/']" [queryParams]="{priority: 'normal'}" type="radio" name="options" id="option1" autocomplete="off" > Normal
           </label>
-          <label class="btn btn-secondary">
-            <input type="radio" name="options" id="option2" autocomplete="off"> High
+          <label class="btn btn-outline-secondary">
+            <input [routerLink]="['/']" [queryParams]="{priority: 'high'}" type="radio" name="options" id="option2" autocomplete="off"> High
           </label>
-          <label class="btn btn-secondary">
-            <input type="radio" name="options" id="option3" autocomplete="off"> Urgent
+          <label class="btn btn-outline-secondary">
+            <input [routerLink]="['/']" [queryParams]="{priority: 'urgent'}" type="radio" name="options" id="option3" autocomplete="off"> Urgent
+          </label>
+          <label class="btn btn-outline-secondary">
+            <input [routerLink]="['/']" type="radio" name="options" id="option4" autocomplete="off" checked> All
           </label>
         </div>
+
       </div>
       <div class="col">
         <a class="float-right" [routerLink]="['/task/add']">
@@ -31,22 +35,30 @@
       <th>Title</th>
       <th>Description</th>
       <th>Priority</th>
-      <th>DateCreated</th>
+      <th>Created date</th>
+      <th>Deadline date</th>
+      <th>Completed date</th>
       <th>Action</th>
+      <th>Completed</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let task of tasks">
+    <tr *ngFor="let task of tasks" [ngClass]="{'bg-warning' : isPastDue(task.deadlineDate)}">
       <td>{{task.id}}</td>
       <td>{{task.title}}</td>
       <td>{{task.description}}</td>
       <td>{{task.priority}}</td>
       <td>{{task.created}}</td>
+      <td>{{task.deadlineDate}}</td>
+      <td>{{task.completedDate}}</td>
       <td>
-        <button type="button" class="btn btn-outline-danger  mr-2" (click)="deleteTask(task.id)">Delete</button>
+        <button type="button" class="btn btn-outline-danger mr-2" (click)="deleteTask(task.id)">Delete</button>
         <a [routerLink]="['/task/edit/', task.id]">
           <button type="button" class="btn btn-outline-primary">Edit</button>
         </a>
+      </td>
+      <td style="text-align:center; vertical-align:middle;">
+        <input  type="checkbox" (click)="completeTask(task.id)" [checked]="task.completed">
       </td>
     </tr>
     </tbody>

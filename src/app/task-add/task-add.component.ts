@@ -21,7 +21,9 @@ export class TaskAddComponent implements OnInit {
       title: ['', Validators.compose([Validators.required])],
       description: ['', Validators.compose([Validators.required])],
       priority: ['', Validators.compose([Validators.required])],
-      created: ['', Validators.compose([Validators.required])]
+      created: ['', Validators.compose([Validators.required])],
+      deadlineDate: [''],
+      completedDate: [''],
     });
   }
 
@@ -32,12 +34,13 @@ export class TaskAddComponent implements OnInit {
     newTask.description = this.taskForm.controls.description.value;
     newTask.priority = this.taskForm.controls.priority.value;
     newTask.created = this.taskForm.controls.created.value;
+    newTask.deadlineDate = this.taskForm.controls.deadlineDate.value;
+    newTask.completedDate = this.taskForm.controls.completedDate.value;
 
     this.taskDataServiceService.addTask(newTask);
 
     // this.router.navigate(['/']);
   }
-
 }
 
 
